@@ -1,1 +1,48 @@
-# test.yml
+name: Test Action
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test normal behavior
+        id: normal
+        uses: ./
+        with:
+          message: "hello world"
+
+      - name: Assert normal output
+        run: |
+          echo "Expected: hello world"
+          echo "Actual:   ${{ steps.normal.outputs.result }}"
+          if [ "${{ steps.normal.outputs.result }}" != "hello world" ]; then
+            echo "❌ Normal output test failed"
+            exit 1
+          else
+            echo "✅ Normal output test passed"
+          fi
+
+      - name: Test uppercase feature
+        id: upper
+        uses: ./
+        with:
+          message: "hello world"
+          uppercase: "true"
+
+      - name: Assert uppercase output
+        run: |
+          echo "Expected: HELLO WORLD"
+          echo "Actual:   ${{ steps.upper.outputs.result }}"
+          if [ "${{ steps.upper.outputs.result }}" != "HELLO WORLD" ]; then
+            echo "❌ Uppercase feature test failed"
+            exit 1
+          else
+            echo "✅ Uppercase feature test passed"
+          fi
