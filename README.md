@@ -17,6 +17,21 @@ This GitHub Action prints a message and optionally converts it to uppercase.
 
 ---
 
+### Inputs
+
+| Name      | Required | Description                        |
+|-----------|----------|------------------------------------|
+| message   | Yes      | Message to print                   |
+| uppercase | No       | Convert message to uppercase        |
+
+### Example Usage
+```yaml
+uses: my-org/my-action@v1
+with:
+  message: "Hello World"
+  uppercase: true
+```
+
 ## 🚀 Example Usage
 
 ```yaml
@@ -33,3 +48,5 @@ jobs:
         with:
           message: "Hello World"
           uppercase: true
+
+
