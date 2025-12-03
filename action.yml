@@ -1,0 +1,24 @@
+name: "My Updated Custom Action"
+description: "Prints a message and optionally converts it to uppercase."
+author: "Your Name"
+
+inputs:
+  message:
+    description: "Message to print"
+    required: true
+  uppercase:
+    description: "Convert message to uppercase"
+    required: false
+    default: "false"
+
+outputs:
+  result:
+    description: "Processed message"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
+
+branding:
+  icon: "zap"
+  color: "blue"
